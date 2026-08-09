@@ -1,0 +1,23 @@
+# Task: Replace portfolio content with Tarek Mahmoud Alamir's CV
+
+- [x] 1. Explore repo & understand data flow
+- [x] 2. Confirm plan with user
+- [x] 3. Update `components/data/about.ts`
+- [x] 4. Update `components/data/skills.ts`
+- [x] 5. Update `components/data/projects.ts`
+- [x] 6. Update `components/data/navigation.ts`
+- [x] 7. Update `components/Home/Skills/SkillCard.tsx` (add new icons)
+- [x] 8. Update `components/Home/Hero/Hero.tsx`
+- [x] 9. Update `components/Home/Hero/HeroImage.tsx`
+- [x] 10. Update `components/Home/Navbar/Nav.tsx`
+- [x] 11. Update `components/Home/Footer/Footer.tsx`
+- [x] 12. Update `components/Home/About/About.tsx`
+- [x] 13. Update `components/Home/Projects/Project.tsx`
+- [x] 14. Update `components/Home/Skills/Skills.tsx`
+- [x] 15. Update `app/layout.tsx` (SEO metadata)
+- [x] 16. Run build/lint to verify
+- [x] 17. Set new profile picture (`public/profile-pic.jpg`)
+- [x] 18. Download project images from SST Egypt website (`public/images/`)
+- [x] 19. Assign project images in `projects.ts`
+- [x] 20. Fix `object-fit` -> `object-cover` in ProjectSlider
+- [x] 21. Final build verification (passed)
