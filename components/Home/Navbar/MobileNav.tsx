@@ -38,7 +38,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ closeMobileNav }) => {
             <div className="relative transform transition-all duration-500 group-hover:scale-105">
               <Image
                 src="/pic.jpg"
-                alt="Hossam Yasser Hussein"
+                alt="Tarek Mahmoud Alamir"
                 width={100}
                 height={100}
                 className="relative rounded-full border-4 border-white transition-all duration-500"
@@ -55,7 +55,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ closeMobileNav }) => {
 
           <div className="text-center">
             <h2 className="text-2xl font-black bg-gradient-to-r from-[#87CEEB] via-[#1E90FF] to-[#87CEEB] bg-clip-text text-transparent mb-1">
-              Hossam Yasser Hussein
+              Tarek Mahmoud Alamir
             </h2>
             <p className="text-sm text-gray-400 font-semibold">Front-End Developer</p>
             <div className="flex items-center justify-center gap-2 mt-2">
@@ -93,7 +93,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ closeMobileNav }) => {
         <div className="mt-auto px-6 py-4 border-t border-[#1E90FF]/20">
           <div className="text-center">
             <p className="text-sm bg-gradient-to-r from-[#87CEEB] to-[#1E90FF] bg-clip-text text-transparent font-bold">
-              Made with 💙 by Hossam Yasser Hussein
+              Made with 💙 by Tarek Mahmoud Alamir
             </p>
             <p className="text-xs text-gray-500 mt-1">© 2025 All rights reserved</p>
           </div>
