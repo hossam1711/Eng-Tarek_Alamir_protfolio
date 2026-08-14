@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { CgClose } from "react-icons/cg";
 import { BsLightningChargeFill, BsStars } from "react-icons/bs";
-import { FaCode } from "react-icons/fa";
 
 interface MobileNavProps {
   closeMobileNav: () => void;
@@ -57,12 +56,12 @@ const MobileNav: React.FC<MobileNavProps> = ({ closeMobileNav }) => {
             <h2 className="text-2xl font-black bg-gradient-to-r from-[#87CEEB] via-[#1E90FF] to-[#87CEEB] bg-clip-text text-transparent mb-1">
               Tarek Mahmoud Alamir
             </h2>
-            <p className="text-sm text-gray-400 font-semibold">Front-End Developer</p>
+            <p className="text-sm text-[#87CEEB] font-semibold">Electrical & ELV Engineer</p>
             <div className="flex items-center justify-center gap-2 mt-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#87CEEB]/20 to-[#1E90FF]/20 rounded-lg flex items-center justify-center border border-[#1E90FF]/30">
-                <FaCode className="w-4 h-4 text-[#87CEEB]" />
+              <div className="w-8 h-8 bg-gradient-to-br from-[#87CEEB]/20 to-[#1E90FF]/20 rounded-lg flex items-center justify-center border border-[#1E90FF]/30 shadow-sm shadow-[#1E90FF]/30">
+                <BsLightningChargeFill className="w-4 h-4 text-[#87CEEB]" />
               </div>
-              <span className="text-xs text-gray-500">Portfolio</span>
+              <span className="text-xs text-gray-400 font-medium">Portfolio</span>
             </div>
           </div>
         </div>

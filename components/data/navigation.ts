@@ -13,7 +13,6 @@ export const navLinks: NavLink[] = [
 ];
 
 export const socialLinks = {
-  github: "https://github.com/",
   linkedin: "https://www.linkedin.com/in/tarek-alamir",
   facebook: "https://www.facebook.com/",
   instagram: "https://www.instagram.com/",

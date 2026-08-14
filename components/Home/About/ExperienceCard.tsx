@@ -12,9 +12,8 @@ const ExperienceCard = () => {
         <div className="h-1 flex-1 bg-gradient-to-r from-[#4682B4] to-transparent rounded-full"></div>
       </div>
 
-      <div className="relative group">
-        <div className="absolute -inset-1 bg-gradient-to-r from-[#20B2AA] to-[#4682B4] rounded-2xl blur-lg opacity-0 group-hover:opacity-40 transition-all duration-500"></div>
-        <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 group-hover:border-[#4682B4]/40 transition-all duration-300 hover:scale-[1.02]">
+      <div className="relative">
+         <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 transition-all duration-300">
           <div className="flex items-start gap-4">
             <div className="relative w-12 h-12 bg-gradient-to-br from-[#20B2AA] to-[#4682B4] rounded-lg flex items-center justify-center">
               <MdWorkOutline className="w-6 h-6 text-white" />

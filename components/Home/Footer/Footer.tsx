@@ -4,11 +4,11 @@ import { navLinks, socialLinks, contactInfo } from "../../data/navigation";
 import {
   FaEnvelope,
   FaHeart,
-  FaCode,
   FaWhatsapp,
 } from "react-icons/fa";
 import { BsStars, BsArrowUp } from "react-icons/bs";
 import { animationStyles } from "../../styles/theme";
+import Logo from "../../common/Logo";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -48,20 +48,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12 animate-fadeInUp">
           {/* Brand Section */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3 group">
-              <div className="relative">
-                <div className="absolute -inset-2 bg-gradient-to-r from-[#2a2a3e] to-[#3a3a4e] rounded-xl blur-md opacity-40 group-hover:opacity-70 transition-all duration-500 animate-spin-slow"></div>
-                <div className="relative w-12 h-12 bg-gradient-to-br from-[#2a2a3e] to-[#3a3a4e] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <FaCode className="w-6 h-6 text-[#e4e4e4]" />
-                </div>
-              </div>
-<div>
-                <h3 className="text-2xl font-black bg-gradient-to-r from-[#9ca3af] to-[#b0b0b0] bg-clip-text text-transparent">
-                  T.A
-                </h3>
-                <p className="text-xs text-[#9ca3af] font-semibold">Electrical & ELV Engineer</p>
-              </div>
-            </div>
+            <Logo onClick={scrollToTop} />
             <p className="text-[#b0b0b0] text-sm leading-relaxed">
               ELV Engineer with hands-on experience in Fire Alarm, CCTV, Public Address, and Access Control systems.
             </p>

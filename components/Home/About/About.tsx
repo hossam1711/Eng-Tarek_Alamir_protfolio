@@ -19,10 +19,10 @@ const About = () => {
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4">
         {/* Section Header */}
-<SectionHeader
+        <SectionHeader
           badge="About Me"
-          title="Design &"
-          highlightText="Develop"
+          title="ELV Engineering & "
+          highlightText="Integration"
           description="ELV Engineer passionate about delivering reliable, high-quality
             Fire Alarm, CCTV, Public Address, and Access Control systems"
         />
@@ -44,7 +44,7 @@ const About = () => {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <div className="h-1 w-8 bg-gradient-to-r from-[#20B2AA] to-[#4682B4] rounded-full"></div>
-<h2 className="text-2xl font-extrabold text-[#e4e4e4]">Experience</h2>
+                <h2 className="text-2xl font-extrabold text-[#e4e4e4]">Experience</h2>
                 <div className="h-1 flex-1 bg-gradient-to-r from-[#4682B4] to-transparent rounded-full"></div>
               </div>
               <div className="grid md:grid-cols-2 gap-4">

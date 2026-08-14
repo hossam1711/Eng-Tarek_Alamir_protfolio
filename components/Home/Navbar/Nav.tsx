@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { FaCode } from "react-icons/fa";
 import { navLinks } from "../../data/navigation";
 import { BiDownload } from "react-icons/bi";
 import { HiBars3BottomRight } from "react-icons/hi2";
+import Logo from "../../common/Logo";
 
 interface NavProps {
   toggleMobileNav: () => void;
@@ -54,23 +54,7 @@ const Nav: React.FC<NavProps> = ({ toggleMobileNav }) => {
 
       <div className="flex items-center h-full justify-between w-[92%] xl:w-[88%] 2xl:w-[85%] mx-auto">
         {/* Logo */}
-        <button
-          onClick={() => scrollToSection("#home")}
-          className="flex items-center space-x-3 group cursor-pointer"
-        >
-          <div className="w-12 h-12 bg-[#1a1a2e] rounded-lg flex items-center justify-center border border-[#6c757d] group-hover:bg-[#2a2a3e] transition-all duration-300">
-            <FaCode className="w-6 h-6 text-[#e4e4e4] group-hover:scale-110 transition-transform duration-300" />
-          </div>
-
-          <div className="flex flex-col">
-            <h1 className="text-3xl md:text-4xl font-black text-[#e4e4e4] group-hover:scale-105 transition-transform duration-300">
-              T.A
-            </h1>
-            <p className="text-[10px] font-semibold text-[#9ca3af] tracking-widest uppercase -mt-1">
-              Electrical & ELV Engineer
-            </p>
-          </div>
-        </button>
+        <Logo onClick={() => scrollToSection("#home")} />
 
         {/* Nav Links */}
         <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">

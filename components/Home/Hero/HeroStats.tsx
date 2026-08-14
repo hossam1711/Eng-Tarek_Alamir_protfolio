@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { FaCode, FaLaptopCode, FaHeart } from "react-icons/fa";
+import { BsLightningChargeFill } from "react-icons/bs";
+import { FaLaptopCode, FaHeart } from "react-icons/fa";
 
 interface StatBadge {
   icon: React.ElementType;
@@ -10,7 +11,7 @@ interface StatBadge {
 
 const statsBadges: StatBadge[] = [
   {
-    icon: FaCode,
+    icon: BsLightningChargeFill,
     text: "1+ Years",
     color: "from-[#20B2AA] to-[#4682B4]",
   },

@@ -1,14 +1,73 @@
 "use client";
-import React, { useState } from "react";
-import { BsStars } from "react-icons/bs";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { BsStars, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import ProjectCard from "./ProjectCard";
 import ProjectSlider from "./ProjectSlider";
 import { projects } from "../../data/projects";
 import { backgroundEffects, sectionDivider, animationStyles } from "../../styles/theme";
 
 const Project = () => {
-  // const [currentSlide] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const animationRef = useRef<number | null>(null);
+  const scrollPosRef = useRef(0);
+  const singleSetWidthRef = useRef(0);
+
+  const getItemTotalWidth = useCallback(() => {
+    if (!scrollContainerRef.current) return 62;
+    const firstItem = scrollContainerRef.current.querySelector("button");
+    if (!firstItem) return 62;
+    return firstItem.offsetWidth + 6;
+  }, []);
+
+  const initDimensions = useCallback(() => {
+    const itemWidth = getItemTotalWidth();
+    singleSetWidthRef.current = projects.length * itemWidth;
+  }, [getItemTotalWidth]);
+
+  useEffect(() => {
+    initDimensions();
+
+    const animate = () => {
+      const container = scrollContainerRef.current;
+      if (!container) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      if (!isHovering) {
+        scrollPosRef.current += 0.3;
+
+        if (singleSetWidthRef.current > 0 && scrollPosRef.current >= singleSetWidthRef.current) {
+          scrollPosRef.current = 0;
+          container.scrollLeft = 0;
+        } else {
+          container.scrollLeft = scrollPosRef.current;
+        }
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isHovering, initDimensions]);
+
+  const prevProject = () => {
+    setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  const nextProject = () => {
+    setCurrentSlide((prev) => (prev + 1) % projects.length);
+  };
+
+  const duplicatedProjects = [...projects, ...projects];
 
   return (
     <div
@@ -31,7 +90,7 @@ const Project = () => {
 
             {/* Heading */}
             <div>
-<h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-2">
+ <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-2">
                 <span className="text-white">Key</span>
                 <br />
                 <span className="relative inline-block">
@@ -51,6 +110,66 @@ const Project = () => {
 
             {/* Project info updated with current slide */}
             <ProjectCard project={projects[currentSlide]} />
+
+            {/* Project Icon Bar */}
+            <div
+              ref={scrollContainerRef}
+              className="flex items-center gap-1.5 overflow-x-auto pb-1"
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+              style={{ msOverflowStyle: "none", scrollbarWidth: "none", overflowX: "auto" }}
+            >
+              {duplicatedProjects.map((project, index) => {
+                const realIndex = index % projects.length;
+                const isActive = realIndex === currentSlide;
+                const Icon = project.icon;
+                return (
+                  <button
+                    key={`${project.id}-${index}`}
+                    onClick={() => setCurrentSlide(realIndex)}
+                    className={`relative flex-shrink-0 flex flex-col items-center gap-0.5 w-14 transition-all duration-300 cursor-pointer ${
+                      isActive ? "scale-105" : "opacity-70 hover:opacity-100"
+                    }`}
+                    aria-label={project.title}
+                  >
+                    <div
+                      className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                        isActive
+                          ? "bg-gradient-to-br from-[#87CEEB] to-[#1E90FF] shadow-md shadow-[#1E90FF]/30"
+                          : "bg-white/5 border border-white/10 text-gray-400 hover:text-[#87CEEB] hover:border-[#1E90FF]/30"
+                      }`}
+                    >
+                      <Icon className={`w-4 h-4 ${isActive ? "text-white" : ""}`} />
+                    </div>
+                    <span
+                      className={`text-[9px] font-semibold leading-tight text-center line-clamp-2 ${
+                        isActive ? "text-[#87CEEB]" : "text-gray-400"
+                      }`}
+                    >
+                      {project.title}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="flex items-center justify-center gap-3 pt-1">
+              <button
+                onClick={prevProject}
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:bg-white/10 hover:text-white hover:border-[#1E90FF]/30 transition-all duration-300 cursor-pointer"
+                aria-label="Previous project"
+              >
+                <BsChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={nextProject}
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:bg-white/10 hover:text-white hover:border-[#1E90FF]/30 transition-all duration-300 cursor-pointer"
+                aria-label="Next project"
+              >
+                <BsChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
           {/* Pass control to slider */}

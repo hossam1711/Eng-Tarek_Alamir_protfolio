@@ -3,7 +3,6 @@ import {
   FaGraduationCap,
   FaLaptopCode,
   FaAward,
-  FaCertificate,
   FaTools,
 } from "react-icons/fa";
 
@@ -58,7 +57,7 @@ export const statsCards: StatCard[] = [
   {
     icon: FaAward,
     label: "Experiences",
-    value: "4+",
+    value: "2+",
     subtitle: "Professional Roles",
     color: "from-[#4682B4] to-[#20B2AA]",
   },

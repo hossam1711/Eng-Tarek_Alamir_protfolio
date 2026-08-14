@@ -9,11 +9,8 @@ interface TrainingCardProps {
 
 const TrainingCard: React.FC<TrainingCardProps> = ({ training, index }) => {
   return (
-    <div key={index} className="relative group">
-      <div
-        className={`absolute -inset-1 bg-gradient-to-r ${training.color} rounded-2xl blur-lg opacity-0 group-hover:opacity-40 transition-all duration-500`}
-      ></div>
-      <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 group-hover:border-[#4682B4]/40 transition-all duration-300 hover:scale-[1.02] h-full">
+    <div key={index} className="relative">
+      <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 transition-all duration-300 h-full">
         <div className="flex items-start gap-3">
           <div
             className={`w-10 h-10 bg-gradient-to-br ${training.color} rounded-lg flex items-center justify-center`}

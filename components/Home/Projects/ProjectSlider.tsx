@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { BsChevronLeft, BsChevronRight, BsStars } from "react-icons/bs";
 import { projects } from "../../data/projects";
@@ -10,13 +10,6 @@ interface ProjectSliderProps {
 }
 
 const ProjectSlider: React.FC<ProjectSliderProps> = ({ currentSlide, setCurrentSlide }) => {
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % projects.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [setCurrentSlide]);
-
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % projects.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
 
@@ -43,15 +36,15 @@ const ProjectSlider: React.FC<ProjectSliderProps> = ({ currentSlide, setCurrentS
         {/* Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 z-10"
+          className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#1a1a2e] backdrop-blur-xl rounded-full border-2 border-[#1E90FF] flex items-center justify-center text-[#87CEEB] hover:bg-[#1E90FF] hover:text-white hover:scale-110 hover:shadow-lg hover:shadow-[#1E90FF]/40 transition-all duration-300 z-10"
         >
-          <BsChevronLeft className="w-5 h-5" />
+          <BsChevronLeft className="w-6 h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 z-10"
+          className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#1a1a2e] backdrop-blur-xl rounded-full border-2 border-[#1E90FF] flex items-center justify-center text-[#87CEEB] hover:bg-[#1E90FF] hover:text-white hover:scale-110 hover:shadow-lg hover:shadow-[#1E90FF]/40 transition-all duration-300 z-10"
         >
-          <BsChevronRight className="w-5 h-5" />
+          <BsChevronRight className="w-6 h-6" />
         </button>
       </div>
 
