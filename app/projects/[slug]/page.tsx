@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { projects } from "@/components/data/projects";
-import { BsChevronLeft } from "react-icons/bs";
-import { backgroundEffects, animationStyles } from "@/components/styles/theme";
+import { BsChevronLeft, BsChevronDown } from "react-icons/bs";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -11,6 +11,7 @@ interface PageProps {
 
 const ProjectDetailPage = ({ params }: PageProps) => {
   const [resolvedParams, setResolvedParams] = React.useState<{ slug: string } | null>(null);
+  const [openSection, setOpenSection] = useState<number | null>(0);
 
   React.useEffect(() => {
     params.then(setResolvedParams);
@@ -30,11 +31,10 @@ const ProjectDetailPage = ({ params }: PageProps) => {
 
   if (!resolvedParams) {
     return (
-      <div className="relative min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#16213e] overflow-hidden flex items-center justify-center">
-        {backgroundEffects}
-        <div className="relative z-10 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-t-2 border-[#87CEEB] mx-auto mb-4"></div>
-          <p className="text-gray-400 font-semibold">Loading...</p>
+      <div className="min-h-screen bg-[#f7f7f8] flex items-center justify-center">
+        <div className="text-center px-4">
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-t-2 border-[#1E90FF] mx-auto mb-4"></div>
+          <p className="text-gray-500 text-sm">Loading...</p>
         </div>
       </div>
     );
@@ -44,11 +44,10 @@ const ProjectDetailPage = ({ params }: PageProps) => {
 
   if (!project) {
     return (
-      <div className="relative min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#16213e] overflow-hidden flex items-center justify-center">
-        {backgroundEffects}
-        <div className="relative z-10 text-center">
-          <h1 className="text-4xl font-black text-white mb-4">Project Not Found</h1>
-          <Link href="/#projects" className="text-[#87CEEB] hover:text-[#1E90FF] transition-colors">
+      <div className="min-h-screen bg-[#f7f7f8] flex items-center justify-center">
+        <div className="text-center px-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Project Not Found</h1>
+          <Link href="/#projects" className="text-[#1E90FF] hover:text-[#0f6fd6] transition-colors">
             Back to Projects
           </Link>
         </div>
@@ -59,91 +58,116 @@ const ProjectDetailPage = ({ params }: PageProps) => {
   const sections = project.sections || [];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#16213e] overflow-hidden">
-      {backgroundEffects}
+    <div className="min-h-screen bg-[#f7f7f8]">
+      {/* Back Navigation */}
+      <div className="max-w-3xl mx-auto px-4 pt-4 md:pt-6">
+        <Link
+          href="/#projects"
+          className="inline-flex items-center gap-2 text-[#1E90FF] hover:text-[#0f6fd6] transition-colors duration-300 text-sm md:text-base font-medium"
+        >
+          <BsChevronLeft className="w-4 h-4" />
+          Back to Projects
+        </Link>
+      </div>
 
-      <div className="relative z-10">
-        {/* Back Navigation */}
-        <div className="w-full max-w-4xl mx-auto px-4 pt-6">
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 text-[#87CEEB] hover:text-[#1E90FF] transition-colors duration-300 text-sm font-semibold"
-          >
-            <BsChevronLeft className="w-4 h-4" />
-            Back to Projects
-          </Link>
-        </div>
-
-        {/* Project Header */}
-        <section className="max-w-4xl mx-auto px-4 py-12">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-black text-white mb-4">
-              {project.title}
-            </h1>
-            <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-6">
-              {project.description}
-            </p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {project.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-semibold text-gray-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+      {/* Project Image */}
+      {project.image && (
+        <div className="max-w-sm md:max-w-3xl mx-auto px-4 mt-4 md:mt-6">
+          <div className="relative w-full aspect-[4/3] md:aspect-video rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 768px"
+            />
           </div>
-        </section>
+        </div>
+      )}
 
-        {/* Sections */}
-        <div className="max-w-4xl mx-auto px-4 pb-10 space-y-10">
-          {sections.map((section, idx) => (
-            <div key={idx}>
-              <h2 className="text-2xl font-black text-white mb-4">{section.title}</h2>
-              <ul className="space-y-2">
-                {section.items.map((item, itemIdx) => (
-                  <li key={itemIdx} className="flex items-start gap-3 text-gray-300">
-                    <span className="text-[#1E90FF] mt-1.5 text-sm">•</span>
-                    <span className="text-sm sm:text-base leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
+      {/* Project Header */}
+      <section className="max-w-3xl mx-auto px-4 py-8 md:py-10 text-center">
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4">
+          {project.title}
+        </h1>
+        <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-5 md:mb-6">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap justify-center gap-2">
+          {project.tags.map((tag, index) => (
+            <span
+              key={index}
+              className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs md:text-sm text-gray-600 shadow-sm"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* Sections as accordion */}
+      <div className="max-w-3xl mx-auto px-4 pb-10 space-y-3">
+        {sections.map((section, idx) => {
+          const isOpen = openSection === idx;
+          return (
+            <div
+              key={idx}
+              className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm"
+            >
+              <button
+                onClick={() => setOpenSection(isOpen ? null : idx)}
+                className="w-full flex items-center justify-between px-4 py-3 md:px-5 md:py-4 text-left"
+              >
+                <span className="text-gray-900 font-medium text-base md:text-lg">
+                  {section.title}
+                </span>
+                <BsChevronDown
+                  className={`w-5 h-5 text-gray-400 transition-transform duration-200 flex-shrink-0 ml-3 ${
+                    isOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {isOpen && (
+                <ul className="px-4 pb-4 md:px-5 md:pb-5 space-y-2 md:space-y-2.5">
+                  {section.items.map((item, itemIdx) => (
+                    <li key={itemIdx} className="flex items-start gap-3 text-gray-700">
+                      <span className="text-[#1E90FF] mt-1.5 md:mt-2 text-xs">•</span>
+                      <span className="text-sm md:text-base leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Image Gallery */}
+      <section className="max-w-3xl mx-auto px-4 pb-16">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Installation Gallery</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-4">
+          {[
+            "Fire Alarm Control Panel",
+            "Repeater Panels",
+            "Smoke Detectors",
+            "Heat Detectors",
+            "Manual Call Points",
+            "Sounders / Strobes",
+            "Monitor & Control Modules",
+            "Field Devices",
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="aspect-square bg-white border border-gray-200 rounded-xl flex flex-col items-center justify-center p-2 md:p-4 shadow-sm"
+            >
+              <span className="text-xs md:text-sm font-semibold text-gray-600 text-center leading-snug">{item}</span>
             </div>
           ))}
         </div>
-
-        {/* Image Gallery */}
-        <section className="max-w-5xl mx-auto px-4 py-12">
-          <h2 className="text-2xl font-black text-white mb-6">Installation Gallery</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              "Fire Alarm Control Panel",
-              "Repeater Panels",
-              "Smoke Detectors",
-              "Heat Detectors",
-              "Manual Call Points",
-              "Sounders / Strobes",
-              "Monitor & Control Modules",
-              "Field Devices",
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="aspect-square bg-white/5 border border-white/10 rounded-xl flex flex-col items-center justify-center gap-2"
-              >
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-xs font-semibold text-gray-400 text-center px-2">{item}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-gray-500 text-xs mt-4">
-            Replace with actual project photos
-          </p>
-        </section>
-      </div>
-
-      <style jsx>{animationStyles}</style>
+        <p className="text-center text-gray-400 text-xs md:text-sm mt-4 md:mt-6">
+          Replace with actual project photos
+        </p>
+      </section>
     </div>
   );
 };

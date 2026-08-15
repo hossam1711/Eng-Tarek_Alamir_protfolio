@@ -19,25 +19,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onModalStateChange }
 
   return (
     <>
-      <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 transition-all duration-300 group">
-        <div className="flex items-start gap-4 mb-3">
+      <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 md:p-5 border border-white/10 transition-all duration-300 group">
+        <div className="flex items-start gap-3 md:gap-4 mb-3">
           <div className="relative">
-            <div className="relative w-12 h-12 bg-gradient-to-br from-[#87CEEB] to-[#1E90FF] rounded-xl flex items-center justify-center">
-              {React.createElement(project.icon, { className: "w-6 h-6 text-white" })}
+            <div className="relative w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#87CEEB] to-[#1E90FF] rounded-xl flex items-center justify-center">
+              {React.createElement(project.icon, { className: "w-5 h-5 md:w-6 md:h-6 text-white" })}
             </div>
           </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
-            <p className="text-gray-400 text-sm leading-snug">{project.description}</p>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg md:text-xl font-bold text-white mb-1 truncate">{project.title}</h3>
+            <p className="text-gray-400 text-xs md:text-sm leading-snug line-clamp-2">{project.description}</p>
           </div>
         </div>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
           {project.tags.map((tag, index) => (
             <span
               key={index}
-              className="px-2.5 py-1 bg-gradient-to-r from-[#87CEEB]/10 to-[#1E90FF]/10 rounded-lg text-xs font-semibold text-[#87CEEB] border border-[#1E90FF]/20"
+              className="px-2 md:px-2.5 py-1 bg-gradient-to-r from-[#87CEEB]/10 to-[#1E90FF]/10 rounded-lg text-[10px] md:text-xs font-semibold text-[#87CEEB] border border-[#1E90FF]/20"
             >
               {tag}
             </span>
@@ -50,13 +50,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onModalStateChange }
             <Link href={`/projects/${project.slug}`} className="w-full">
               <button
                 type="button"
-                className="w-full px-4 py-2.5 flex items-center justify-center gap-2 bg-emerald-400 hover:bg-emerald-300 border border-emerald-300 rounded-xl text-gray-950 text-sm font-extrabold transition-all duration-300 cursor-pointer"
+                className="w-full px-3 py-2 md:px-4 md:py-2.5 flex items-center justify-center gap-2 bg-emerald-400 hover:bg-emerald-300 border border-emerald-300 rounded-xl text-gray-950 text-xs md:text-sm font-extrabold transition-all duration-300 cursor-pointer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-4 h-4"
+                  className="w-3.5 h-3.5 md:w-4 md:h-4"
                 >
                   <path d="M14 3v2h3.59L10 12.59 11.41 14 19 6.41V10h2V3z" />
                   <path d="M5 5h5V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-5h-2v5H5V5z" />
@@ -68,13 +68,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onModalStateChange }
             <button
               type="button"
               onClick={handleOpenModal}
-              className="w-full px-4 py-2.5 flex items-center justify-center gap-2 bg-emerald-400 hover:bg-emerald-300 border border-emerald-300 rounded-xl text-gray-950 text-sm font-extrabold transition-all duration-300 cursor-pointer"
+              className="w-full px-3 py-2 md:px-4 md:py-2.5 flex items-center justify-center gap-2 bg-emerald-400 hover:bg-emerald-300 border border-emerald-300 rounded-xl text-gray-950 text-xs md:text-sm font-extrabold transition-all duration-300 cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-4 h-4"
+                className="w-3.5 h-3.5 md:w-4 md:h-4"
               >
                 <path d="M14 3v2h3.59L10 12.59 11.41 14 19 6.41V10h2V3z" />
                 <path d="M5 5h5V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-5h-2v5H5V5z" />
