@@ -1,4 +1,4 @@
-# 💼 Portfolio Website - tark
+# 💼 Portfolio Website - tarek
 
 <div align="center">
 
