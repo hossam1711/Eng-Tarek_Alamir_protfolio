@@ -11,7 +11,8 @@ interface PageProps {
 
 const ProjectDetailPage = ({ params }: PageProps) => {
   const [resolvedParams, setResolvedParams] = React.useState<{ slug: string } | null>(null);
-  const [openSection, setOpenSection] = useState<number | null>(0);
+  const [openSections, setOpenSections] = useState<number[]>([0, 1]);
+  const [animatingSections, setAnimatingSections] = useState<number[]>([]);
 
   React.useEffect(() => {
     params.then(setResolvedParams);
@@ -56,6 +57,18 @@ const ProjectDetailPage = ({ params }: PageProps) => {
   }
 
   const sections = project.sections || [];
+
+  const toggleSection = (index: number) => {
+    setOpenSections((prev) => {
+      const isOpen = prev.includes(index);
+      if (isOpen) {
+        setAnimatingSections((a) => a.filter((i) => i !== index));
+        return prev.filter((i) => i !== index);
+      }
+      setAnimatingSections((a) => [...a, index]);
+      return [...prev, index];
+    });
+  };
 
   return (
     <div className="min-h-screen bg-[#f7f7f8]">
@@ -106,28 +119,35 @@ const ProjectDetailPage = ({ params }: PageProps) => {
       </section>
 
       {/* Sections as accordion */}
-      <div className="max-w-3xl mx-auto px-4 pb-10 space-y-3">
+      <div className="max-w-3xl mx-auto px-4 pb-16 space-y-3">
         {sections.map((section, idx) => {
-          const isOpen = openSection === idx;
+          const isOpen = openSections.includes(idx);
+          const isAnimating = animatingSections.includes(idx);
           return (
             <div
               key={idx}
               className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm"
             >
               <button
-                onClick={() => setOpenSection(isOpen ? null : idx)}
+                onClick={() => toggleSection(idx)}
                 className="w-full flex items-center justify-between px-4 py-3 md:px-5 md:py-4 text-left"
               >
                 <span className="text-gray-900 font-medium text-base md:text-lg">
                   {section.title}
                 </span>
                 <BsChevronDown
-                  className={`w-5 h-5 text-gray-400 transition-transform duration-200 flex-shrink-0 ml-3 ${
+                  className={`w-5 h-5 text-gray-400 transition-transform duration-500 ease-out flex-shrink-0 ml-3 ${
                     isOpen ? "rotate-180" : ""
                   }`}
                 />
               </button>
-              {isOpen && (
+              <div
+                className="overflow-hidden transition-all duration-500 ease-out"
+                style={{
+                  maxHeight: isOpen || isAnimating ? `${section.items.length * 60 + 40}px` : "0px",
+                  opacity: isOpen || isAnimating ? 1 : 0,
+                }}
+              >
                 <ul className="px-4 pb-4 md:px-5 md:pb-5 space-y-2 md:space-y-2.5">
                   {section.items.map((item, itemIdx) => (
                     <li key={itemIdx} className="flex items-start gap-3 text-gray-700">
@@ -136,7 +156,7 @@ const ProjectDetailPage = ({ params }: PageProps) => {
                     </li>
                   ))}
                 </ul>
-              )}
+              </div>
             </div>
           );
         })}

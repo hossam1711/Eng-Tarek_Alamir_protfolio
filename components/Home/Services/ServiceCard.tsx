@@ -56,7 +56,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, onBookNow }) 
           <div className="absolute inset-0 bg-gradient-to-r from-[#4682B4] to-[#20B2AA]"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#4682B4] to-[#20B2AA] opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500"></div>
           <span className="relative flex items-center justify-center gap-2 text-white font-semibold text-sm">
-            Book Now
+           
             <BsArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </span>
         </button>

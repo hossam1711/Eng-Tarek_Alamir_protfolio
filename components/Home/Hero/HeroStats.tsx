@@ -12,7 +12,7 @@ interface StatBadge {
 const statsBadges: StatBadge[] = [
   {
     icon: BsLightningChargeFill,
-    text: "1+ Years",
+    text: "2+ Years",
     color: "from-[#20B2AA] to-[#4682B4]",
   },
   {
