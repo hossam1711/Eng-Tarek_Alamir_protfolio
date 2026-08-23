@@ -30,13 +30,13 @@ const MobileNav: React.FC<MobileNavProps> = ({ closeMobileNav }) => {
 
         {/* Header with Profile */}
         <div className="flex flex-col items-center px-6 pt-8 pb-6 border-b border-[#4682B4]/20">
-            <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-white">
+            <div className="relative w-40 h-40 rounded-full overflow-hidden border-[6px] border-white">
               <Image
                 src="/images/TAREK_PIC.jpeg"
                 alt="Tarek Mahmoud Alamir"
-                width={96}
-                height={96}
-                className="object-cover w-full h-full"
+                width={128}
+                height={128}
+                className="object-contain w-full h-full bg-black/20"
               />
             </div>
 

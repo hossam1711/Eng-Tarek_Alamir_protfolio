@@ -6,13 +6,13 @@ const HeroImage = () => {
   return (
     <div className="relative group">
       {/* Image Wrapper */}
-      <div className="relative rounded-full overflow-hidden border-[6px] border-[#6c757d]">
+      <div className="relative rounded-full overflow-hidden border-[10px] border-[#6c757d]">
         <Image
           src="/images/TAREK_PIC.jpeg"
           alt="Tarek Mahmoud Alamir"
-          width={180}
-          height={180}
-          className="object-cover w-[180px] h-[180px]"
+          width={240}
+          height={240}
+          className="object-contain w-[240px] h-[240px] bg-black/20"
           priority
         />
       </div>
