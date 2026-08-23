@@ -3,7 +3,7 @@ import { navLinks } from "../../data/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { CgClose } from "react-icons/cg";
-import { BsLightningChargeFill, BsStars } from "react-icons/bs";
+import { BsLightningChargeFill } from "react-icons/bs";
 
 interface MobileNavProps {
   closeMobileNav: () => void;
@@ -30,27 +30,15 @@ const MobileNav: React.FC<MobileNavProps> = ({ closeMobileNav }) => {
 
         {/* Header with Profile */}
         <div className="flex flex-col items-center px-6 pt-8 pb-6 border-b border-[#4682B4]/20">
-          <div className="relative group mb-4">
-            <div className="absolute -inset-4 bg-gradient-to-r from-[#87CEEB] via-[#1E90FF] to-[#87CEEB] rounded-full blur-xl opacity-40 group-hover:opacity-60 transition-all duration-500 animate-spin-slow"></div>
-            <div className="absolute -inset-3 bg-gradient-to-r from-[#1E90FF] via-[#87CEEB] to-[#1E90FF] rounded-full blur-lg opacity-50 group-hover:opacity-70 transition-all duration-500 animate-spin-slower"></div>
-
-            <div className="relative transform transition-all duration-500 group-hover:scale-105">
+            <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-white">
               <Image
-                src="/pic.jpg"
+                src="/images/TAREK_PIC.jpeg"
                 alt="Tarek Mahmoud Alamir"
-                width={100}
-                height={100}
-                className="relative rounded-full border-4 border-white transition-all duration-500"
+                width={96}
+                height={96}
+                className="object-cover w-full h-full"
               />
             </div>
-
-            <span className="absolute bottom-1 right-1 w-6 h-6 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full border-[3px] border-white animate-pulse-slow">
-              <span className="absolute inset-0 rounded-full bg-emerald-300 animate-ping"></span>
-            </span>
-
-            <BsStars className="absolute -top-2 -right-2 w-5 h-5 text-[#20B2AA] animate-pulse-fast" />
-            <BsStars className="absolute -bottom-1 -left-1 w-4 h-4 text-[#4682B4] animate-pulse-fast animation-delay-1000" />
-          </div>
 
           <div className="text-center">
             <h2 className="text-2xl font-black bg-gradient-to-r from-[#87CEEB] via-[#1E90FF] to-[#87CEEB] bg-clip-text text-transparent mb-1">
@@ -104,26 +92,11 @@ const MobileNav: React.FC<MobileNavProps> = ({ closeMobileNav }) => {
           from { transform: translateX(100%); opacity: 0; }
           to { transform: translateX(0); opacity: 1; }
         }
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes spin-slower {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.6; }
-        }
         @keyframes pulse-fast {
           0%, 100% { opacity: 1; transform: scale(1); }
           50% { opacity: 0.5; transform: scale(1.2); }
         }
         .animate-slideIn { animation: slideIn 0.4s ease-out; }
-        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
-        .animate-spin-slower { animation: spin-slower 30s linear infinite; }
-        .animate-pulse-slow { animation: pulse-slow 2s ease-in-out infinite; }
         .animate-pulse-fast { animation: pulse-fast 1.5s ease-in-out infinite; }
         .animation-delay-1000 { animation-delay: 1s; }
       `}</style>

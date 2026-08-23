@@ -7,8 +7,8 @@ const HeroImage = () => {
     <div className="relative group">
       {/* Image Wrapper */}
       <div className="relative rounded-full overflow-hidden border-[6px] border-[#6c757d]">
-<Image
-          src="/profile-pic.jpg"
+        <Image
+          src="/images/TAREK_PIC.jpeg"
           alt="Tarek Mahmoud Alamir"
           width={180}
           height={180}
